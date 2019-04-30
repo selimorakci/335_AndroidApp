@@ -12,8 +12,24 @@ public class Badi {
     public Badi (){
     }
 
+    public Badi(int id, String name, String kanton, String ort){
+
+        this.id = id;
+        this.name = name;
+        this.kanton = kanton;
+        this.ort = ort;
+    }
+
     public void setId (int id) {
         this.id = id;
+    }
+
+    public String getName () {
+        return this.name;
+    }
+
+    public int getId () {
+        return this.id;
     }
 
     public void setName (String name) {
@@ -32,7 +48,8 @@ public class Badi {
         this.becken.add(becken);
     }
 
+    @Override
     public String toString() {
-        return ("id: "+id+", name: "+name+", becken: "+"var"+", kanton: "+kanton+", ort: "+ort);
+        return (name + " " + kanton);
     }
 }

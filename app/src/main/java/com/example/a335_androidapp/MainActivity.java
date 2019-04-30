@@ -20,24 +20,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addBadisToClickableList() {
-        ListView badis =  findViewById(R.id.badiliste);
+        ListView badis = findViewById(R.id.badiliste);
         ArrayAdapter<Badi> badiAdapter =
-        new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
+                new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
         badiAdapter.addAll(BadiDao.getAll());
         badis.setAdapter(badiAdapter);
 
-        AdapterView.OnItemClickListener mListClickedHandler = new
-        AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener mListClickedHandler = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), BadiDetailsActivity.class);
-                Badi selected = (Badi)parent.getItemAtPosition(position);
-
+                Badi selected = (Badi) parent.getItemAtPosition(position);
                 intent.putExtra("badiId", selected.getId());
                 intent.putExtra("badiName", selected.getName());
                 startActivity(intent);
             }
         };
-
         badis.setOnItemClickListener(mListClickedHandler);
     }
 }

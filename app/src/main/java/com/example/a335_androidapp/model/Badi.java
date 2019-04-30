@@ -1,11 +1,12 @@
 package com.example.a335_androidapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Badi {
     private int id;
     private String name;
-    private List<Becken> becken;
+    private List<Becken> becken = new ArrayList<Becken>();
     private String kanton;
     private String ort;
 
@@ -19,6 +20,8 @@ public class Badi {
         this.kanton = kanton;
         this.ort = ort;
     }
+
+    public List<Becken> getBecken() { return this.becken; }
 
     public void setId (int id) {
         this.id = id;
@@ -45,6 +48,7 @@ public class Badi {
     }
 
     public void addBecken (Becken becken) {
+
         this.becken.add(becken);
     }
 

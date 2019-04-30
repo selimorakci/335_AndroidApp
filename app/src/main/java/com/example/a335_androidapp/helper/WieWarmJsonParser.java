@@ -24,7 +24,6 @@ public class WieWarmJsonParser {
             String key = (String) keys.next();
             JSONObject subObj = beckenJson.getJSONObject(key);
             becken.setName(subObj.getString("beckenname"));
-            Berufsbildungscenter | Meine erste App 12
             becken.setTemperature(Double.parseDouble(subObj.getString("temp")));
             badi.addBecken(becken);         }
 

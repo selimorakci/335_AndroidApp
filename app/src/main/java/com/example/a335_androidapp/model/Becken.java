@@ -4,9 +4,7 @@ public class Becken {
     private String name;
     private double temperature;
 
-    public Becken(String name, double temperature) {
-        this.name = name;
-        this.temperature = temperature;
+    public Becken(){
     }
 
     public void setName (String name) {

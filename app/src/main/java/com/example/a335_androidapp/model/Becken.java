@@ -9,6 +9,8 @@ public class Becken {
         this.temperature = temperature;
     }
 
-
+    public String toString() {
+        return ("name: "+name+", temperature: "+temperature+"");
+    }
 
 }

@@ -9,6 +9,14 @@ public class Becken {
         this.temperature = temperature;
     }
 
+    public void setName (String name) {
+        this.name = name;
+    }
+
+    public void setTemperature (double temperature) {
+        this.temperature = temperature;
+    }
+
     public String toString() {
         return ("name: "+name+", temperature: "+temperature+"");
     }

@@ -16,7 +16,7 @@ public class Becken {
     }
 
     public String toString() {
-        return ("name: "+name+", temperature: "+temperature+"");
+        return (name+" "+temperature+"°");
     }
 
 }

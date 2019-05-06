@@ -4,14 +4,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Badiname"
+        android:textSize="40sp"
+        android:gravity="center_horizontal"
+        android:layout_margin="30dp"/>
+
+    <ListView
+        android:id="@+id/beckenliste"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"></ListView>
+
     <ProgressBar
         android:id="@+id/loading_badi_details_progress"
         android:layout_width="50dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="visible" />
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/beckenliste"></ListView>
+        android:visibility="invisible" />
+
 </LinearLayout>

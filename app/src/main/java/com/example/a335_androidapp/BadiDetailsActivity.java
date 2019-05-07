@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -18,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.a335_androidapp.dal.BadiDao;
 import com.example.a335_androidapp.helper.WieWarmJsonParser;
 import com.example.a335_androidapp.model.Badi;
 import com.example.a335_androidapp.model.Becken;
@@ -26,6 +30,7 @@ import org.json.JSONException;
 
 public class BadiDetailsActivity extends AppCompatActivity {
     private int badiId;
+    private String ort;
     private ProgressBar progressBar;
     private static final String WIE_WARM_API_URL = "https://www.wiewarm.ch/api/v1/bad.json/";
 
@@ -36,8 +41,10 @@ public class BadiDetailsActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.loading_badi_details_progress);
         Intent intent = getIntent();
         badiId = intent.getIntExtra("badiId", 0);
+        ort = intent.getStringExtra("badiOrt");
         String name = intent.getStringExtra("badiName");
         setTitle(name);
+        addBadisToClickableList();
         progressBar.setVisibility(View.VISIBLE);
         getBadiTemp(WIE_WARM_API_URL + badiId);
         ActionBar actionBar = getSupportActionBar();
@@ -95,5 +102,16 @@ public class BadiDetailsActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
+    }
+
+    private void addBadisToClickableList() {
+        ImageView temp = findViewById(R.id.temp_icon);
+        temp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), BadiTemperatureActivity.class);
+                intent.putExtra("badiOrt", ort);
+                startActivity(intent);
+            }
+        });
     }
 }

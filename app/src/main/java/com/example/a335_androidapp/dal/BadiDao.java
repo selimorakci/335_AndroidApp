@@ -11,7 +11,7 @@ public class BadiDao {
         availableBadis.add(new Badi(71, "Schwimmbad", "BE", "Aarberg"));
         availableBadis.add(new Badi(27, "Schwimmbad Gruebi","BE","Adelboden"));
         availableBadis.add(new Badi(6, "Stadtberner Baeder","BE", "Bern"));
-        availableBadis.add(new Badi(55, "Zürichsee","ZH", ""));
+        availableBadis.add(new Badi(55, "Zürichsee","ZH", "Zürich"));
 
         return availableBadis;
     }

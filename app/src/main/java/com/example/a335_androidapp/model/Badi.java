@@ -47,6 +47,10 @@ public class Badi {
         this.ort = ort;
     }
 
+    public String getOrt () {
+        return this.ort;
+    }
+
     public void addBecken (Becken becken) {
 
         this.becken.add(becken);

@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Badi selected = (Badi) parent.getItemAtPosition(position);
                 intent.putExtra("badiId", selected.getId());
                 intent.putExtra("badiName", selected.getName());
+                intent.putExtra("badiOrt", selected.getOrt());
                 startActivity(intent);
             }
         };

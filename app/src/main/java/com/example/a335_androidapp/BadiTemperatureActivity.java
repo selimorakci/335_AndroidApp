@@ -91,7 +91,8 @@ public class BadiTemperatureActivity extends ContainerActivity {
                     weatherText.setText(weatherObj.getString("main"));
                     icon = weatherObj.getString("icon");
                     DecimalFormat twoDForm = new DecimalFormat("#.##");
-                    tempText.setText(twoDForm.format((jsonObj.getJSONObject("main").getDouble("temp") - 32) * 5/9)+"");
+                    double tempCelsius = (jsonObj.getJSONObject("main").getDouble("temp") - 273.15);
+                    tempText.setText(twoDForm.format(tempCelsius)+"");
                     progressBar.setVisibility(View.GONE);
                 } catch (JSONException e) {
                     generateAlertDialog();

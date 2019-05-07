@@ -24,13 +24,14 @@ import com.example.a335_androidapp.model.Becken;
 
 import org.json.JSONException;
 
-public class BadiDetailsActivity extends AppCompatActivity {
+public class BadiDetailsActivity extends ContainerActivity {
     private int badiId;
     private ProgressBar progressBar;
     private static final String WIE_WARM_API_URL = "https://www.wiewarm.ch/api/v1/bad.json/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_badi_details);
         progressBar = findViewById(R.id.loading_badi_details_progress);

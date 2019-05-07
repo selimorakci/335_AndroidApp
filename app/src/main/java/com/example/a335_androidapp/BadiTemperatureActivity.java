@@ -20,7 +20,7 @@ import com.example.a335_androidapp.model.Becken;
 
 import org.json.JSONException;
 
-public class BadiTemperatureActivity extends AppCompatActivity {
+public class BadiTemperatureActivity extends ContainerActivity {
     private static final String endpoint = "http://api.openweathermap.org/data/2.5/weather?q=";
     private static final String appId = "&APPID=59ee4acb1201b53089d449b38595bc16";
     private ProgressBar progressBar;

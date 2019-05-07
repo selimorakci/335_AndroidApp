@@ -1,7 +1,6 @@
 package com.example.a335_androidapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -9,7 +8,7 @@ import android.widget.*;
 import com.example.a335_androidapp.dal.BadiDao;
 import com.example.a335_androidapp.model.Badi;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ContainerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -13,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".BadiTemperatureActivity"></activity>
-        <activity android:name=".BadiDetailsActivity" />
+        <activity android:name=".BadiDetailsActivity"/>
         <activity android:name=".OfflineActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ContainerActivity"/>
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

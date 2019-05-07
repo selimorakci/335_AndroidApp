@@ -24,7 +24,7 @@ import java.text.DecimalFormat;
 
 
 public class BadiTemperatureActivity extends ContainerActivity {
-    private static final String endpoint = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private static final String endpoint = "https://api.openweathermap.org/data/2.5/weather?q=";
     private static final String appId = "&APPID=59ee4acb1201b53089d449b38595bc16";
     private ProgressBar progressBar;
     private double temp;

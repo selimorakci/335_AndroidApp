@@ -94,7 +94,7 @@ public class BadiTemperatureActivity extends ContainerActivity {
                     Picasso.with(getApplicationContext()).load("https://openweathermap.org/img/w/"+icon+".png").into((ImageView) findViewById(R.id.weather_icon));
                     DecimalFormat twoDForm = new DecimalFormat("#.##");
                     double tempCelsius = (jsonObj.getJSONObject("main").getDouble("temp") - 273.15);
-                    tempText.setText(twoDForm.format(tempCelsius)+"");
+                    tempText.setText(twoDForm.format(tempCelsius)+"°");
                     progressBar.setVisibility(View.GONE);
                 } catch (JSONException e) {
                     generateAlertDialog();

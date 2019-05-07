@@ -4,10 +4,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.android.volley.Request;
@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,6 +91,7 @@ public class BadiTemperatureActivity extends ContainerActivity {
                     JSONObject weatherObj = weatherArr.getJSONObject(0);
                     weatherText.setText(weatherObj.getString("main"));
                     icon = weatherObj.getString("icon");
+                    Picasso.with(getApplicationContext()).load("https://openweathermap.org/img/w/"+icon+".png").into((ImageView) findViewById(R.id.weather_icon));
                     DecimalFormat twoDForm = new DecimalFormat("#.##");
                     double tempCelsius = (jsonObj.getJSONObject("main").getDouble("temp") - 273.15);
                     tempText.setText(twoDForm.format(tempCelsius)+"");

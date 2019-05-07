@@ -24,7 +24,7 @@ import java.text.DecimalFormat;
 
 
 public class BadiTemperatureActivity extends ContainerActivity {
-    private static final String endpoint = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private static final String endpoint = "https://api.openweathermap.org/data/2.5/weather?q=";
     private static final String appId = "&APPID=59ee4acb1201b53089d449b38595bc16";
     private ProgressBar progressBar;
     private double temp;
@@ -91,7 +91,8 @@ public class BadiTemperatureActivity extends ContainerActivity {
                     weatherText.setText(weatherObj.getString("main"));
                     icon = weatherObj.getString("icon");
                     DecimalFormat twoDForm = new DecimalFormat("#.##");
-                    tempText.setText(twoDForm.format((jsonObj.getJSONObject("main").getDouble("temp") - 32) * 5/9)+"");
+                    double tempCelsius = (jsonObj.getJSONObject("main").getDouble("temp") - 273.15);
+                    tempText.setText(twoDForm.format(tempCelsius)+"");
                     progressBar.setVisibility(View.GONE);
                 } catch (JSONException e) {
                     generateAlertDialog();

@@ -28,29 +28,30 @@ public class BadiTemperatureActivity extends ContainerActivity {
     private static final String endpoint = "https://api.openweathermap.org/data/2.5/weather?q=";
     private static final String appId = "&APPID=59ee4acb1201b53089d449b38595bc16";
     private ProgressBar progressBar;
-    private double temp;
-    private String weather;
-    private String icon;
-    private String ort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_badi_temperature);
+        // initializes and displays the loader
         progressBar = findViewById(R.id.loading_badi_temp_progress);
-        setTitle("Badi-App");
         progressBar.setVisibility(View.VISIBLE);
+        setTitle("Badi-App");
+        // gets intend and reads the data that was sent
         Intent intent = getIntent();
-        ort = intent.getStringExtra("badiOrt");
+        String ort = intent.getStringExtra("badiOrt");
+
         TextView ortText = (TextView) findViewById(R.id.ort_text);
         ortText.setText(ort);
         getBadiTemp(endpoint + ort + appId);
+        // adds the "back" icon
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
+    // adds the function to the back icon
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -77,6 +78,7 @@ public class BadiTemperatureActivity extends ContainerActivity {
         dialog.show();
     }
 
+    // does an api call to get the weather of the city by name
     private void getBadiTemp(String url) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -86,15 +88,18 @@ public class BadiTemperatureActivity extends ContainerActivity {
                     JSONObject jsonObj = new JSONObject(response);
                     TextView tempText = (TextView) findViewById(R.id.temp_text);
                     TextView weatherText = (TextView) findViewById(R.id.weather_text);
+                    DecimalFormat twoDForm = new DecimalFormat("#.##");
 
+                    // reads the data from the JSON response
                     JSONArray weatherArr = jsonObj.getJSONArray("weather");
                     JSONObject weatherObj = weatherArr.getJSONObject(0);
-                    weatherText.setText(weatherObj.getString("main"));
-                    icon = weatherObj.getString("icon");
-                    Picasso.with(getApplicationContext()).load("https://openweathermap.org/img/w/"+icon+".png").into((ImageView) findViewById(R.id.weather_icon));
-                    DecimalFormat twoDForm = new DecimalFormat("#.##");
                     double tempCelsius = (jsonObj.getJSONObject("main").getDouble("temp") - 273.15);
+                    String icon = weatherObj.getString("icon");
+                    // sets the text of the TextView to the response text
+                    weatherText.setText(weatherObj.getString("main"));
                     tempText.setText(twoDForm.format(tempCelsius)+"°");
+                    // gets the icon from the api and sets it to the image view
+                    Picasso.with(getApplicationContext()).load("https://openweathermap.org/img/w/"+icon+".png").into((ImageView) findViewById(R.id.weather_icon));
                     progressBar.setVisibility(View.GONE);
                 } catch (JSONException e) {
                     generateAlertDialog();

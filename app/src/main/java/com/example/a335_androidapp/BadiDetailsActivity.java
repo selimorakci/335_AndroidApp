@@ -4,12 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.a335_androidapp.dal.BadiDao;
 import com.example.a335_androidapp.helper.WieWarmJsonParser;
 import com.example.a335_androidapp.model.Badi;
 import com.example.a335_androidapp.model.Becken;
@@ -37,26 +33,30 @@ public class BadiDetailsActivity extends ContainerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_badi_details);
+        // initializes and displays the loader
         progressBar = findViewById(R.id.loading_badi_details_progress);
+        progressBar.setVisibility(View.VISIBLE);
+        // gets intend and reads the data that was sent
         Intent intent = getIntent();
         badiId = intent.getIntExtra("badiId", 0);
         ort = intent.getStringExtra("badiOrt");
         String name = intent.getStringExtra("badiName");
+
         setTitle("Badi-App");
         TextView title = (TextView) findViewById(R.id.title_text);
         title.setText(name);
-        addBadisToClickableList();
-        progressBar.setVisibility(View.VISIBLE);
+        addTempIconToClickableList();
         getBadiTemp(WIE_WARM_API_URL + badiId);
+        // adds the "back" icon
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
+    // adds the function to the back icon
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -67,7 +67,6 @@ public class BadiDetailsActivity extends ContainerActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
     private void generateAlertDialog() {
         progressBar.setVisibility(View.GONE);
         AlertDialog.Builder dialogBuilder;
@@ -83,6 +82,7 @@ public class BadiDetailsActivity extends ContainerActivity {
         dialog.show();
     }
 
+    // does an api call to get the temperature of the pools by id
     private void getBadiTemp(String url) {
         final ArrayAdapter<Becken> beckenInfosAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -90,7 +90,9 @@ public class BadiDetailsActivity extends ContainerActivity {
             @Override
             public void onResponse(String response) {
                 try {
+                    // prepares the data from the api call
                     Badi badi = WieWarmJsonParser.createBadiFromJsonString(response);
+
                     beckenInfosAdapter.addAll(badi.getBecken());
                     ListView badiInfoList = findViewById(R.id.beckenliste);
                     badiInfoList.setAdapter(beckenInfosAdapter);
@@ -108,11 +110,14 @@ public class BadiDetailsActivity extends ContainerActivity {
         queue.add(stringRequest);
     }
 
-    private void addBadisToClickableList() {
+    // makes the temperature icon clickable and defines action on click
+    private void addTempIconToClickableList() {
         ImageView temp = findViewById(R.id.temp_icon);
         temp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // opens new activity/intend
                 Intent intent = new Intent(getApplicationContext(), BadiTemperatureActivity.class);
+                // "attaches" data to the new intent
                 intent.putExtra("badiOrt", ort);
                 startActivity(intent);
             }

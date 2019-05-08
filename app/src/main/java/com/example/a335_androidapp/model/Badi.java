@@ -14,7 +14,6 @@ public class Badi {
     }
 
     public Badi(int id, String name, String kanton, String ort){
-
         this.id = id;
         this.name = name;
         this.kanton = kanton;

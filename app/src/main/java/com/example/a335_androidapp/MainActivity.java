@@ -18,6 +18,7 @@ public class MainActivity extends ContainerActivity {
         addBadisToClickableList();
     }
 
+    // sets the different "badis" clickable and defines action on click
     private void addBadisToClickableList() {
         ListView badis = findViewById(R.id.badiliste);
         ArrayAdapter<Badi> badiAdapter =
@@ -27,7 +28,9 @@ public class MainActivity extends ContainerActivity {
 
         AdapterView.OnItemClickListener mListClickedHandler = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
+                // opens new activity/intend
                 Intent intent = new Intent(getApplicationContext(), BadiDetailsActivity.class);
+                // "attaches" data to the new intend
                 Badi selected = (Badi) parent.getItemAtPosition(position);
                 intent.putExtra("badiId", selected.getId());
                 intent.putExtra("badiName", selected.getName());

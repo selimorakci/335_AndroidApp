@@ -78,6 +78,7 @@ public class BadiTemperatureActivity extends ContainerActivity {
         dialog.show();
     }
 
+
     // does an api call to get the weather of the city by name
     private void getBadiTemp(String url) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());

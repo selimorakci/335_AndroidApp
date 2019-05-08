@@ -46,7 +46,9 @@ public class BadiDetailsActivity extends ContainerActivity {
 
         setTitle("Badi-App");
         TextView title = (TextView) findViewById(R.id.title_text);
+        TextView ortText = (TextView) findViewById(R.id.ort_text);
         title.setText(name);
+        ortText.setText(ort);
         addTempIconToClickableList();
         getBadiTemp(WIE_WARM_API_URL + badiId);
         // adds the "back" icon

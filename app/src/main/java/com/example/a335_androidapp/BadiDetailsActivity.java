@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,7 +45,9 @@ public class BadiDetailsActivity extends ContainerActivity {
         badiId = intent.getIntExtra("badiId", 0);
         ort = intent.getStringExtra("badiOrt");
         String name = intent.getStringExtra("badiName");
-        setTitle(name);
+        setTitle("Badi-App");
+        TextView title = (TextView) findViewById(R.id.title_text);
+        title.setText(name);
         addBadisToClickableList();
         progressBar.setVisibility(View.VISIBLE);
         getBadiTemp(WIE_WARM_API_URL + badiId);

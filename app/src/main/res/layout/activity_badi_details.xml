@@ -6,10 +6,9 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Badiname"
         android:textSize="40sp"
         android:gravity="center_horizontal"
         android:layout_margin="30dp"/>

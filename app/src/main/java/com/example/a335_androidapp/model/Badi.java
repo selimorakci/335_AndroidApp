@@ -22,6 +22,14 @@ public class Badi {
 
     public List<Becken> getBecken() { return this.becken; }
 
+    public void addBecken (Becken becken) {
+        this.becken.add(becken);
+    }
+
+    public int getId () {
+        return this.id;
+    }
+
     public void setId (int id) {
         this.id = id;
     }
@@ -30,29 +38,24 @@ public class Badi {
         return this.name;
     }
 
-    public int getId () {
-        return this.id;
-    }
-
     public void setName (String name) {
         this.name = name;
+    }
+
+    public String getKanton () {
+        return this.kanton;
     }
 
     public void setKanton (String kanton) {
         this.kanton = kanton;
     }
 
-    public void setOrt (String ort) {
-        this.ort = ort;
-    }
-
     public String getOrt () {
         return this.ort;
     }
 
-    public void addBecken (Becken becken) {
-
-        this.becken.add(becken);
+    public void setOrt (String ort) {
+        this.ort = ort;
     }
 
     @Override

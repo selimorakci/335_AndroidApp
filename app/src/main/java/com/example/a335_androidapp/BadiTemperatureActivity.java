@@ -77,7 +77,7 @@ public class BadiTemperatureActivity extends ContainerActivity {
         dialog.show();
     }
 
-    private void getBadiTemp(String url) {
+    public void getBadiTemp(String url) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
